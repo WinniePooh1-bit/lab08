@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
-ROOT_DIR="$(cd "$(dirname "\${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 mkdir -p results
 command -v java >/dev/null 2>&1 || { echo "Java олдсонгүй" >&2; exit 127; }
@@ -15,23 +15,23 @@ cleanup() { restore_source; rm -f "$BACKUP"; }
 trap cleanup EXIT
 run_expected_failure() {
   local number="$1" description="$2"
-  local output="results/mvn-test-mutant-\${number}.txt"
+  local output="results/mvn-test-mutant-${number}.txt"
   local status
   echo
-  echo "========== MUTANT \${number}: \${description} =========="
+  echo "========== MUTANT ${number}: ${description} =========="
   set +e
   mvn test 2>&1 | tee "$output"
-  status=\${PIPESTATUS[0]}
+  status=${PIPESTATUS[0]}
   set -e
   if [[ "$status" -eq 0 ]]; then
-    echo "Мутант \${number}-ийг тест илрүүлсэнгүй." >&2
+    echo "Мутант ${number}-ийг тест илрүүлсэнгүй." >&2
     return 1
   fi
   grep -Eq 'Failures: [1-9][0-9]*|Errors: [1-9][0-9]*' "$output" || {
-    echo "Mutant \${number}: Failure/Error байхгүй." >&2; return 1;
+    echo "Mutant ${number}: Failure/Error байхгүй." >&2; return 1;
   }
   grep -q 'BUILD FAILURE' "$output" || {
-    echo "Mutant \${number}: BUILD FAILURE олдсонгүй." >&2; return 1;
+    echo "Mutant ${number}: BUILD FAILURE олдсонгүй." >&2; return 1;
   }
   restore_source
 }
