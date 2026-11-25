@@ -1,0 +1,75 @@
+name: Lab 08 Mockito verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pom.xml'
+      - 'src/**'
+      - 'scripts/**'
+      - '.github/workflows/verify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Capture Java and Maven versions
+        run: |
+          mkdir -p results
+          java -version 2>&1 | tee results/java-version.txt
+          mvn -version 2>&1 | tee results/mvn-version.txt
+
+      - name: Run A1-A8 and all three mutation checks
+        run: bash scripts/verify-lab.sh
+
+      - name: Verify clean clone
+        env:
+          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          clone_dir="$(mktemp -d)"
+          trap 'rm -rf "$clone_dir"' EXIT
+          git clone "https://x-access-token:\${GH_TOKEN}@github.com/\${GITHUB_REPOSITORY}.git" "$clone_dir/repo"
+          cd "$clone_dir/repo"
+          mvn test 2>&1 | tee "$GITHUB_WORKSPACE/results/mvn-test-clean-clone.txt"
+          grep -Eq 'Tests run: 10, Failures: 0, Errors: 0, Skipped: 0' "$GITHUB_WORKSPACE/results/mvn-test-clean-clone.txt"
+          grep -q 'BUILD SUCCESS' "$GITHUB_WORKSPACE/results/mvn-test-clean-clone.txt"
+
+      - name: Finalize README with actual command output
+        run: python3 scripts/finalize-readme.py
+
+      - name: Commit test evidence
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md results/
+          if ! git diff --cached --quiet; then
+            git commit -m "test: add Maven and mutation verification results"
+            git push origin HEAD:main
+          fi
+
+      - name: Upload logs even if a test fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab08-mockito-results
+          path: results/
+          if-no-files-found: warn
+          retention-days: 30
