@@ -79,9 +79,9 @@ CourseRegistrationService.java дээр дараах гурван зориуды
 
 | Мутант | Зориудын өөрчлөлт | Унасан тест | Failure/Error | Нотолгоо |
 |---|---|---|---:|---|
-| M1 | идэвхгүй оюутны guard-ыг авсан | `java`, `register_errorScenario_returnsExpectedCodeWithoutSavingOrEmailing`, `register_inactiveStudent_returnsInactiveWithoutEmailInteractions` | 2 Failure, 0 Error | `results/mvn-test-mutant-1.txt` |
-| M2 | saveRegistration дуудалтыг авсан | `java`, `register_activeStudentWithPrerequisite_returnsOkAndSavesAndSendsEmail`, `register_emailSenderThrows_stillReturnsOkAndSavesRegistration` | 2 Failure, 0 Error | `results/mvn-test-mutant-2.txt` |
-| M3 | courseId null шалгалтыг авсан | `java`, `register_nullStudentOrCourseId_throwsIllegalArgumentExceptionWithoutInteractions` | 1 Failure, 0 Error | `results/mvn-test-mutant-3.txt` |
+| M1 | идэвхгүй оюутны guard-ыг авсан | `register_errorScenario_returnsExpectedCodeWithoutSavingOrEmailing`, `register_inactiveStudent_returnsInactiveWithoutEmailInteractions` | 2 Failure, 0 Error | `results/mvn-test-mutant-1.txt` |
+| M2 | saveRegistration дуудалтыг авсан | `register_activeStudentWithPrerequisite_returnsOkAndSavesAndSendsEmail`, `register_emailSenderThrows_stillReturnsOkAndSavesRegistration` | 2 Failure, 0 Error | `results/mvn-test-mutant-2.txt` |
+| M3 | courseId null шалгалтыг авсан | `register_nullStudentOrCourseId_throwsIllegalArgumentExceptionWithoutInteractions` | 1 Failure, 0 Error | `results/mvn-test-mutant-3.txt` |
 
 - M1: `[ERROR] Tests run: 10, Failures: 2, Errors: 0, Skipped: 0`
 - M2: `[ERROR] Tests run: 10, Failures: 2, Errors: 0, Skipped: 0`

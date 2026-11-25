@@ -6,14 +6,14 @@
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ lab08-mockito ---
-[INFO] skip non existing resourceDirectory /tmp/tmp.m4YumPC5FO/repo/src/main/resources
+[INFO] skip non existing resourceDirectory /tmp/tmp.Vm5saHMVb7/repo/src/main/resources
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ lab08-mockito ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 4 source files with javac [debug release 17] to target/classes
 [INFO] 
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ lab08-mockito ---
-[INFO] skip non existing resourceDirectory /tmp/tmp.m4YumPC5FO/repo/src/test/resources
+[INFO] skip non existing resourceDirectory /tmp/tmp.Vm5saHMVb7/repo/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ lab08-mockito ---
 [INFO] Recompiling the module because of changed dependency.
@@ -27,7 +27,7 @@
 [INFO] -------------------------------------------------------
 [INFO] Running mn.edu.must.sqat.CourseRegistrationServiceTest
 OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.807 s -- in mn.edu.must.sqat.CourseRegistrationServiceTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.083 s -- in mn.edu.must.sqat.CourseRegistrationServiceTest
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -36,6 +36,6 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.321 s
-[INFO] Finished at: 2026-11-25T06:43:45Z
+[INFO] Total time:  3.438 s
+[INFO] Finished at: 2026-11-25T06:44:54Z
 [INFO] ------------------------------------------------------------------------

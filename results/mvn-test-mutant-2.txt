@@ -27,8 +27,8 @@
 [INFO] -------------------------------------------------------
 [INFO] Running mn.edu.must.sqat.CourseRegistrationServiceTest
 OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
-[ERROR] Tests run: 10, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.776 s <<< FAILURE! -- in mn.edu.must.sqat.CourseRegistrationServiceTest
-[ERROR] mn.edu.must.sqat.CourseRegistrationServiceTest.register_activeStudentWithPrerequisite_returnsOkAndSavesAndSendsEmail -- Time elapsed: 0.653 s <<< FAILURE!
+[ERROR] Tests run: 10, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.080 s <<< FAILURE! -- in mn.edu.must.sqat.CourseRegistrationServiceTest
+[ERROR] mn.edu.must.sqat.CourseRegistrationServiceTest.register_activeStudentWithPrerequisite_returnsOkAndSavesAndSendsEmail -- Time elapsed: 0.911 s <<< FAILURE!
 Wanted but not invoked:
 repository.saveRegistration(
     "B242270801",
@@ -52,7 +52,7 @@ repository.prerequisites("F.CSA313");
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-[ERROR] mn.edu.must.sqat.CourseRegistrationServiceTest.register_emailSenderThrows_stillReturnsOkAndSavesRegistration -- Time elapsed: 0.005 s <<< FAILURE!
+[ERROR] mn.edu.must.sqat.CourseRegistrationServiceTest.register_emailSenderThrows_stillReturnsOkAndSavesRegistration -- Time elapsed: 0.008 s <<< FAILURE!
 Wanted but not invoked:
 repository.saveRegistration(
     "B242270801",
@@ -124,8 +124,8 @@ repository.prerequisites("F.CSA313");
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.406 s
-[INFO] Finished at: 2026-11-25T06:43:35Z
+[INFO] Total time:  3.311 s
+[INFO] Finished at: 2026-11-25T06:44:40Z
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test (default-test) on project lab08-mockito: There are test failures.
 [ERROR] 
