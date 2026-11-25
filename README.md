@@ -14,7 +14,25 @@ CourseRegistrationService-ийн StudentRepository болон EmailSender гэс
 
 <!-- ENV-RESULTS-START -->
 
-Энэ хэсэгт CI орчноос авсан java -version, mvn -version болон эцсийн тестийн бодит summary автоматаар нэмэгдэнэ. Бодит гаралт гарахаас өмнө зохиомол хувилбар, тестийн үр дүн оруулаагүй.
+### `java -version`
+
+```text
+openjdk version "17.0.21" 2026-10-20
+OpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9)
+OpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode, sharing)
+```
+
+### `mvn -version`
+
+```text
+Apache Maven 3.9.15 (98b2cdbfdb5f1ac8781f537ea9acccaed7922349)
+Maven home: /usr/share/apache-maven-3.9.15
+Java version: 17.0.21, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "7.0.0-1020-azure", arch: "amd64", family: "unix"
+```
+
+Эцсийн тестийн summary: `[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0`
 
 <!-- ENV-RESULTS-END -->
 
@@ -59,7 +77,15 @@ CourseRegistrationService.java дээр дараах гурван зориуды
 
 <!-- MUTATION-RESULTS-START -->
 
-Энэ хэсгийн хүснэгтийг гурван мутантын бодит Maven log-оос автоматаар бөглөнө. Үр дүнг урьдчилан зохиож оруулаагүй.
+| Мутант | Зориудын өөрчлөлт | Унасан тест | Failure/Error | Нотолгоо |
+|---|---|---|---:|---|
+| M1 | идэвхгүй оюутны guard-ыг авсан | `java`, `register_errorScenario_returnsExpectedCodeWithoutSavingOrEmailing`, `register_inactiveStudent_returnsInactiveWithoutEmailInteractions` | 2 Failure, 0 Error | `results/mvn-test-mutant-1.txt` |
+| M2 | saveRegistration дуудалтыг авсан | `java`, `register_activeStudentWithPrerequisite_returnsOkAndSavesAndSendsEmail`, `register_emailSenderThrows_stillReturnsOkAndSavesRegistration` | 2 Failure, 0 Error | `results/mvn-test-mutant-2.txt` |
+| M3 | courseId null шалгалтыг авсан | `java`, `register_nullStudentOrCourseId_throwsIllegalArgumentExceptionWithoutInteractions` | 1 Failure, 0 Error | `results/mvn-test-mutant-3.txt` |
+
+- M1: `[ERROR] Tests run: 10, Failures: 2, Errors: 0, Skipped: 0`
+- M2: `[ERROR] Tests run: 10, Failures: 2, Errors: 0, Skipped: 0`
+- M3: `[ERROR] Tests run: 10, Failures: 1, Errors: 0, Skipped: 0`
 
 <!-- MUTATION-RESULTS-END -->
 
