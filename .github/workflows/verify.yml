@@ -38,13 +38,11 @@ jobs:
         run: bash scripts/verify-lab.sh
 
       - name: Verify clean clone
-        env:
-          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           clone_dir="$(mktemp -d)"
           trap 'rm -rf "$clone_dir"' EXIT
-          git clone "https://x-access-token:\${GH_TOKEN}@github.com/\${GITHUB_REPOSITORY}.git" "$clone_dir/repo"
+          git clone "https://github.com/${GITHUB_REPOSITORY}.git" "$clone_dir/repo"
           cd "$clone_dir/repo"
           mvn test 2>&1 | tee "$GITHUB_WORKSPACE/results/mvn-test-clean-clone.txt"
           grep -Eq 'Tests run: 10, Failures: 0, Errors: 0, Skipped: 0' "$GITHUB_WORKSPACE/results/mvn-test-clean-clone.txt"
