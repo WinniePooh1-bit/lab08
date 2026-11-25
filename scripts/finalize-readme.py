@@ -57,7 +57,7 @@ for n in (1, 2, 3):
     total, failures, errors, skipped = map(int, m.groups())
     if total != 10 or failures + errors < 1 or "BUILD FAILURE" not in text:
         raise SystemExit(f"Mutant {n} did not meet mutation criteria: {line}")
-    names = sorted(set(re.findall(r"CourseRegistrationServiceTest\.([A-Za-z0-9_]+)", text)))
+    names = sorted(name for name in set(re.findall(r"CourseRegistrationServiceTest\.([A-Za-z0-9_]+)", text)) if name != "java")
     failed_tests = ", ".join(tick + x + tick for x in names) if names else "Maven log-оос шалгана"
     rows.append(f"| M{n} | {labels[n]} | {failed_tests} | {failures} Failure, {errors} Error | " + tick + f"results/mvn-test-mutant-{n}.txt" + tick + " |")
 mutation = "\n".join(rows) + "\n\n" + "\n".join(
